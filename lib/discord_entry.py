@@ -1,4 +1,5 @@
 import platform
+import subprocess
 import os
 
 import utils
@@ -24,6 +25,20 @@ OS_ENVIRONMENT_PATH = {
         }
     }
 }
+infer_linux_path()
+
+def infer_linux_path():
+    global OS_ENVIRONMENT_PATH
+    if platform_name != "Linux":
+        return
+    which_result = subprocess.run(
+        ["which", "discord"],
+        encoding="utf-8", stdout=subprocess.PIPE
+    )
+    if which_result.returncode != 0:
+        return
+    OS_ENVIRONMENT_PATH["discord"]["Linux"]["Path"] = which_result.stdout
+
 
 def find_discord_entry_command():
     platform_name = platform.system()
