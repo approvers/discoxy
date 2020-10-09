@@ -1,7 +1,8 @@
 import platform
+import os
 
 import utils
-from exceptions import *
+from exceptions import InvalidPlatformError, DiscordNotFoundError
 
 OS_ENVIRONMENT_PATH = {
     "setting":{
@@ -24,3 +25,18 @@ OS_ENVIRONMENT_PATH = {
     }
 }
 
+def find_discord_entry_command():
+    platform_name = platform.system()
+    if platform_name not in OS_ENVIRONMENT_PATH["discord"].keys():
+        raise InvalidPlatformError(platform_name)
+    
+    if "Path" not in OS_ENVIRONMENT_PATH["discord"][platform_name].keys():
+        raise DiscordNotFoundError("(cannot infer)")
+    
+    expected_path = OS_ENVIRONMENT_PATH["discord"][platform_name]["Path"]
+    if not os.path.isfile(expected_path):
+        raise DiscordNotFoundError(expected_path)
+
+    return expected_path
+    
+print(find_discord_entry_command())
