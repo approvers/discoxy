@@ -1,10 +1,9 @@
-from functools import partial
 from typing import List
 from tkinter import *
 from tkinter.ttk import *
 
-from lib.model import utils
-from lib.model.validation import validation
+from lib import utils
+from lib.model.parser import parse
 
 PROGRAM_NAME: str = "discoxy"
 
@@ -30,12 +29,14 @@ class MainPage:
 
         PROXY_DESCRIPTION = "HTTPプロキシ:"
         PORT_DESCRIPTION = "ポート番号:"
-        PLACE_DESCRIPTION = "Discordの場所"
+        PLACE_DESCRIPTION = "Discordの場所:"
 
+        # ラベル
         proxy_label = Label(self.frame, text=PROXY_DESCRIPTION)
         port_label = Label(self.frame, text=PORT_DESCRIPTION)
         place_label = Label(self.frame, text=PLACE_DESCRIPTION)
 
+        # 入力BOX
         proxy_entry = Entry(self.frame)
         proxy_entry.insert(END, "")
         port_entry = Entry(self.frame)
@@ -43,9 +44,11 @@ class MainPage:
         place_entry = Entry(self.frame, width=40)
         place_entry.insert(END, "")
 
-        law_inputs: List[str] = [proxy_entry.get(), port_entry.get(), place_entry.get()]
-        start_button = Button(self.frame, text="起動", command=partial(self.start_button_command, law_inputs))
+        # 起動ボタン
+        self.entries: List[Entry] = [proxy_entry, port_entry, place_entry]
+        start_button = Button(self.frame, text="起動", command=self.start_button_command)
 
+        # 配置
         proxy_label.pack()
         proxy_entry.pack()
         port_label.pack()
@@ -57,5 +60,6 @@ class MainPage:
 
         self.frame.grid(row=0, column=0, sticky="nsew")
 
-    def start_button_command(self, law_inputs: List[str]):
-        validation(law_inputs)
+    def start_button_command(self):
+        law_inputs: List[str] = [entry.get() for entry in self.entries]
+        print(parse(law_inputs))
