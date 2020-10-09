@@ -2,8 +2,8 @@ import platform
 import subprocess
 import os
 
-import utils
-from exceptions import InvalidPlatformError, DiscordNotFoundError
+from lib import model
+from lib.model.exceptions import InvalidPlatformError, DiscordNotFoundError
 
 OS_ENVIRONMENT_PATH = {
     "setting":{

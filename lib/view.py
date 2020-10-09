@@ -1,11 +1,10 @@
-import os
-from typing import Optional
+from functools import partial
+from typing import List
 from tkinter import *
 from tkinter.ttk import *
-from tkinter.messagebox import *
-from urllib import parse
 
-from lib import controller
+from lib.model import utils
+from lib.model.validation import validation
 
 PROGRAM_NAME: str = "discoxy"
 
@@ -19,7 +18,6 @@ class Root:
         self.window.grid_columnconfigure(0, weight=1)
 
         main_page = MainPage(self.window)
-
         main_page.frame.tkraise()
 
         self.window.mainloop()
@@ -27,10 +25,6 @@ class Root:
 
 class MainPage:
     def __init__(self, r: Tk):
-        """
-        Args:
-            r(tk.Tk): tk.Tk()で取得できるwindow
-        """
         self.frame = Frame(r)
         self.root = r
 
@@ -42,73 +36,26 @@ class MainPage:
         port_label = Label(self.frame, text=PORT_DESCRIPTION)
         place_label = Label(self.frame, text=PLACE_DESCRIPTION)
 
-        self.proxy_entry = Entry(self.frame)
-        self.proxy_entry.insert(END, "")
-        self.port_entry = Entry(self.frame)
-        self.port_entry.insert(END, "")
-        self.place_entry = Entry(self.frame, width=40)
-        self.place_entry.insert(END, "")
+        proxy_entry = Entry(self.frame)
+        proxy_entry.insert(END, "")
+        port_entry = Entry(self.frame)
+        port_entry.insert(END, "")
+        place_entry = Entry(self.frame, width=40)
+        place_entry.insert(END, "")
 
-        start_button = Button(self.frame, text="起動", command=self.start)
+        law_inputs: List[str] = [proxy_entry.get(), port_entry.get(), place_entry.get()]
+        start_button = Button(self.frame, text="起動", command=partial(self.start_button_command, law_inputs))
 
         proxy_label.pack()
-        self.proxy_entry.pack()
+        proxy_entry.pack()
         port_label.pack()
-        self.port_entry.pack()
+        port_entry.pack()
         place_label.pack()
-        self.place_entry.pack()
-        Utils.space(self.frame, 1)
+        place_entry.pack()
+        utils.space(self.frame, 1)
         start_button.pack()
 
         self.frame.grid(row=0, column=0, sticky="nsew")
 
-    def start(self):
-        self.parser(self.proxy_entry.get(), self.place_entry.get(), self.port_entry.get())
-
-    def parser(self, law_proxy: str, law_place: str, law_port: str):
-        if not Utils.is_url(law_proxy):
-            Utils.error_dialog("Invalid address has passed. Please specify valid URL.")
-            return
-
-        try:
-            port = int(law_port)
-        except Exception as e:
-            Utils.error_dialog(e)
-            return
-
-        if not (0 <= port <= 65535):
-            Utils.error_dialog("Invalid port number has passed. Please specify within 0 ~ 65535.")
-            return
-
-        try:
-            if not os.path.exists(law_place):
-                raise FileNotFoundError("File not found. Please check your file.")
-        except Exception as e:
-            Utils.error_dialog(e)
-            return
-
-        DataClass.law_proxy = str(self.proxy_entry.get())
-        DataClass.law_place = str(self.place_entry.get())
-        DataClass.law_port = int(self.port_entry.get())
-
-
-class Utils:
-    @staticmethod
-    def space(frame: Frame, count: int):
-        for _ in range(count):
-            Label(frame, text="").pack()
-
-    @staticmethod
-    def is_url(text):
-        url_param = parse.urlparse(text)
-        return len(url_param.scheme) > 0
-
-    @staticmethod
-    def error_dialog(message: str):
-        showerror(message=message)
-
-
-class DataClass:
-    law_proxy: Optional[str] = None
-    law_port: Optional[int] = None
-    law_place: Optional[str] = None
+    def start_button_command(self, law_inputs: List[str]):
+        validation(law_inputs)

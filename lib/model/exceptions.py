@@ -8,4 +8,3 @@ class DiscordNotFoundError(RuntimeError):
     def __init__(self, expected_path: str):
         super().__init__("Discord not found! Expected path: \"{0}\"".format(expected_path))
         self.expected_path = expected_path
-
