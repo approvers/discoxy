@@ -35,28 +35,32 @@ class MainPage:
         port_label = Label(self.frame, text=PORT_DESCRIPTION)
         place_label = Label(self.frame, text=PLACE_DESCRIPTION)
 
-        proxy_entry = Entry(self.frame)
-        proxy_entry.insert(END, "")
-        port_entry = Entry(self.frame)
-        port_entry.insert(END, "")
-        place_entry = Entry(self.frame)
-        place_entry.insert(END, "")
+        self.proxy_entry = Entry(self.frame)
+        self.proxy_entry.insert(END, "")
+        self.port_entry = Entry(self.frame)
+        self.port_entry.insert(END, "")
+        self.place_entry = Entry(self.frame)
+        self.place_entry.insert(END, "")
 
         start_button = Button(self.frame, text="起動", command=self.start)
 
         proxy_label.pack()
-        proxy_entry.pack()
+        self.proxy_entry.pack()
         port_label.pack()
-        port_entry.pack()
+        self.port_entry.pack()
         place_label.pack()
-        place_entry.pack()
+        self.place_entry.pack()
         Utils.space(self.frame, 1)
         start_button.pack()
 
         self.frame.grid(row=0, column=0, sticky="nsew")
 
     def start(self):
-        print("test")
+        law_proxy: str = str(self.proxy_entry.get())
+        law_port: int = int(self.port_entry.get())
+        law_place: str = str(self.place_entry.get())
+
+        print(law_place, law_port, law_proxy)
 
 
 class Utils:
