@@ -20,7 +20,7 @@ def parse(law_inputs: List[str]) -> Optional[ProxySetting]:
 def validation(proxy: str, port: str, place: str) -> bool:
     # URLチェック
     if not utils.is_url(proxy):
-        utils.error_dialog("Invalid address has passed. Please specify valid URL.")
+        utils.error_dialog("アドレスが無効です。正しいURLを入力してください。")
         return False
 
     # ポート番号チェック
