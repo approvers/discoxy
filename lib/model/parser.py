@@ -24,11 +24,12 @@ def validation(proxy: str, port: str, place: str) -> bool:
         return False
 
     # ポート番号チェック
-    try:
-        if not (0 <= int(port) <= 65535):
-            raise RuntimeError("Invalid port number has passed. Please specify port number in range of 0 ~ 65535.")
-    except Exception as e:
-        utils.error_dialog(e)
+    if not port.isnumeric():
+        utils.error_dialog("ポート番号は数値で入力してください。")
+        return False
+
+    if not (0 <= int(port) <= 65535):
+        utils.error_dialog("ポート番号が無効です。0〜65535の間で指定してください。")
         return False
 
     # ファイルチェック
