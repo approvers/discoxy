@@ -32,11 +32,8 @@ def validation(proxy: str, port: str, place: str) -> bool:
         return False
 
     # ファイルチェック
-    try:
-        if os.path.exists(place):
-            raise FileNotFoundError("File not found. Please check your file.")
-    except Exception as e:
-        utils.error_dialog(e)
+    if not os.path.exists(place):
+        utils.error_dialog("ファイルが見つかりませんでした。パスを確認してください。")
         return False
 
     return True
