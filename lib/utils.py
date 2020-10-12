@@ -1,8 +1,6 @@
 import os
-from typing import Optional
 from tkinter import *
 from tkinter.ttk import *
-from tkinter.messagebox import *
 from urllib import parse
 
 
@@ -20,7 +18,3 @@ def space(frame: Frame, count: int):
 def is_url(text):
     url_param = parse.urlparse(text)
     return len(url_param.scheme) > 0
-
-
-def error_dialog(message: Optional[str]):
-    showerror(message=message)
