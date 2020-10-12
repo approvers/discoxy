@@ -2,11 +2,11 @@ import platform
 import subprocess
 import os
 
-from lib import model
+from lib.model import utils
 from lib.model.exceptions import InvalidPlatformError, DiscordNotFoundError
 
 OS_ENVIRONMENT_PATH = {
-    "setting":{
+    "setting": {
         "Windows": utils.get_env_or("APPDATA", "__INVALID_PLATFORM__") + "\\approvers\\discoxy\\",
         "Darwin": utils.get_env_or("HOME", "__INVALID_PLATFORM__") + "/.config/approvers/discoxy/",
         "Linux": utils.get_env_or("HOME", "__INVALID_PLATFORM__") + "/.config/approvers/discoxy/"
@@ -25,7 +25,9 @@ OS_ENVIRONMENT_PATH = {
         }
     }
 }
+
 infer_linux_path()
+
 
 def infer_linux_path():
     global OS_ENVIRONMENT_PATH
