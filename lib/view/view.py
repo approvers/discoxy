@@ -2,8 +2,8 @@ from typing import List
 from tkinter import *
 from tkinter.ttk import *
 
-from lib import utils
-from lib.model.parser import parse
+from lib.view import utils
+from lib.controller.parser import parse
 
 PROGRAM_NAME: str = "discoxy"
 

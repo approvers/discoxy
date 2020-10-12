@@ -1,9 +1,9 @@
 import os
 from typing import Optional, List
 from tkinter.messagebox import *
-from lib.controller import ProxySetting
+from lib.controller.controller import ProxySetting
 
-from lib.utils import is_url
+from lib.controller.utils import is_url
 
 
 def parse(law_inputs: List[str]) -> Optional[ProxySetting]:
