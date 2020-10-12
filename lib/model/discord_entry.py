@@ -2,8 +2,8 @@ import os
 import platform
 import subprocess
 
-import utils
-from exceptions import DiscordNotFoundError, InvalidPlatformError
+from lib import utils, model
+from lib.model.exceptions import DiscordNotFoundError, InvalidPlatformError
 
 
 def infer_linux_path():
