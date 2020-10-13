@@ -3,7 +3,7 @@ from tkinter import *
 from tkinter.ttk import *
 
 from lib.view import utils
-from lib.controller.parser import parse
+from lib.controller.validate import parse
 
 PROGRAM_NAME: str = "discoxy"
 

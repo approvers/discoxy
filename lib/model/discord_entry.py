@@ -42,6 +42,7 @@ OS_ENVIRONMENT_PATH = {
 
 infer_linux_path()
 
+
 def find_discord_entry_command():
     platform_name = platform.system()
     if platform_name not in OS_ENVIRONMENT_PATH["discord"].keys():

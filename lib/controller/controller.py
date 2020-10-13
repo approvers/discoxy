@@ -1,14 +1,14 @@
-from lib.model.proxy_setting import ProxySetting
+from lib.model.setting import Config
 
 
-def load_default_config() -> ProxySetting:
+def load_default_config() -> Config:
     print("Default config loaded")
-    return ProxySetting("example.com", 22)
+    return Config("example.com", 22)
 
 
-def launch_discord(proxy_setting: ProxySetting):
+def launch_discord(proxy_setting: Config):
     print("Discord launched")
 
 
-def save_default_setting(proxy_setting: ProxySetting):
+def save_default_setting(proxy_setting: Config):
     print("Setting saved")

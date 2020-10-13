@@ -1,12 +1,12 @@
 import os
 from typing import Optional, List
 from tkinter.messagebox import *
-from lib.model.proxy_setting import ProxySetting
+from lib.model.setting import Config
 
 from lib.controller.utils import is_url
 
 
-def parse(law_inputs: List[str]) -> Optional[ProxySetting]:
+def parse(law_inputs: List[str]) -> Optional[Config]:
     proxy = law_inputs[0]
     port = law_inputs[1]
     place = law_inputs[2]
@@ -14,7 +14,7 @@ def parse(law_inputs: List[str]) -> Optional[ProxySetting]:
     if not validation(proxy, port, place):
         return
 
-    ret = ProxySetting(proxy_address=proxy, port=int(port))
+    ret = Config(proxy_address=proxy, port=int(port))
     return ret
 
 
