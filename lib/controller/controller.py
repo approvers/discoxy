@@ -1,7 +1,4 @@
-class ProxySetting:
-    def __init__(self, proxy_address: str, port: int):
-        self.proxy_address: str = proxy_address
-        self.port: int = port
+from lib.model.proxy_setting import ProxySetting
 
 
 def load_default_config() -> ProxySetting:
