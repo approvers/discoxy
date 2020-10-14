@@ -1,9 +1,9 @@
 import os
-from typing import Optional, List
 from tkinter.messagebox import *
-from lib.model.setting import Config
+from typing import List, Optional
 
 from lib.controller.utils import is_url
+from lib.model.setting import Config
 
 
 def parse(law_inputs: List[str]) -> Optional[Config]:
