@@ -46,14 +46,14 @@ infer_linux_path()
 def find_discord_entry_command():
     platform_name = platform.system()
     if platform_name not in OS_ENVIRONMENT_PATH["discord"].keys():
-        raise InvalidPlatformError(platform_name)
+        return None
 
     if "Path" not in OS_ENVIRONMENT_PATH["discord"][platform_name].keys():
-        raise DiscordNotFoundError("(cannot infer)")
+        return None
 
     expected_path = OS_ENVIRONMENT_PATH["discord"][platform_name]["Path"]
     if not os.path.isfile(expected_path):
-        raise DiscordNotFoundError(expected_path)
+        return None
 
     return expected_path
 
