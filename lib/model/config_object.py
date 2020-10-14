@@ -28,7 +28,7 @@ class ConfigObject:
             self.config.set(SECTION, 'discord_place',
                             find_discord_entry_command())
         else:
-            self.config.set(SECTION, 'discord_place', None)
+            self.config.set(SECTION, 'discord_place', discord_place)
 
     def reset(self):
         self.config.set(SECTION, 'proxy_address', None)
