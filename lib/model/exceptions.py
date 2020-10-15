@@ -11,12 +11,15 @@ class DiscordNotFoundError(RuntimeError):
 
 
 class InvalidParameterError(RuntimeError):
-    def __self__(
+    def __init__(
             self,
             invalid_address: bool,
             invalid_port: bool,
             invalid_path: bool
     ):
+        self.invalid_address = invalid_address
+        self.invalid_port = invalid_port
+        self.invalid_path = invalid_path
         super().__init__("入力された値に誤りがあります: {}".format(self.make_message()))
 
     def make_message(self):
