@@ -34,6 +34,7 @@ class ConfigObject:
             self.config.add_section(SECTION)
             self.config.set(SECTION, 'proxy_address', "")
             self.config.set(SECTION, 'port', "")
+            self.config.set(SECTION, 'discord_place', find_discord_entry_command())
 
     def save_to_file(self) -> None:
         try:

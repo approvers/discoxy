@@ -27,7 +27,7 @@ OS_ENVIRONMENT_PATH = {
     },
     "discord": {
         "Windows": {
-            "Path": utils.get_env_or("APPDATA", "__INVALID_PLATFORM__") + "\\Local\\Discord\\Update.exe",
+            "Path": utils.get_env_or("USERPROFILE", "__INVALID_PLATFORM__") + "\\AppData\\Local\\Discord\\Update.exe",
             "Option": "-a=--proxy-server="
         },
         "Darwin": {
@@ -52,6 +52,7 @@ def find_discord_entry_command():
         return None
 
     expected_path = OS_ENVIRONMENT_PATH["discord"][platform_name]["Path"]
+
     if not os.path.isfile(expected_path):
         return None
 
