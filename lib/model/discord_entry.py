@@ -3,7 +3,6 @@ import platform
 import subprocess
 
 from lib.model import utils
-from lib.model.exceptions import DiscordNotFoundError, InvalidPlatformError
 
 
 def infer_linux_path():
@@ -19,6 +18,7 @@ def infer_linux_path():
         return
     OS_ENVIRONMENT_PATH["discord"]["Linux"]["Path"] = which_result.stdout.strip()
 
+
 OS_ENVIRONMENT_PATH = {
     "setting": {
         "Windows": utils.get_env_or("APPDATA", "__INVALID_PLATFORM__") + "\\approvers\\discoxy\\",
@@ -27,7 +27,7 @@ OS_ENVIRONMENT_PATH = {
     },
     "discord": {
         "Windows": {
-            "Path": utils.get_env_or("APPDATA", "__INVALID_PLATFORM__") + "\\Local\\Discord\\Update.exe",
+            "Path": utils.get_env_or("USERPROFILE", "__INVALID_PLATFORM__") + "\\AppData\\Local\\Discord\\Update.exe",
             "Option": "-a=--proxy-server="
         },
         "Darwin": {
@@ -42,19 +42,21 @@ OS_ENVIRONMENT_PATH = {
 
 infer_linux_path()
 
+
 def find_discord_entry_command():
     platform_name = platform.system()
     if platform_name not in OS_ENVIRONMENT_PATH["discord"].keys():
-        raise InvalidPlatformError(platform_name)
+        return None
 
     if "Path" not in OS_ENVIRONMENT_PATH["discord"][platform_name].keys():
-        raise DiscordNotFoundError("(cannot infer)")
+        return None
 
     expected_path = OS_ENVIRONMENT_PATH["discord"][platform_name]["Path"]
+
     if not os.path.isfile(expected_path):
-        raise DiscordNotFoundError(expected_path)
+        return None
 
     return expected_path
 
 
-print(find_discord_entry_command())
+print(f"Debug: discord_entry:61: {find_discord_entry_command()}")

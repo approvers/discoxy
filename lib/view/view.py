@@ -3,7 +3,9 @@ from tkinter import *
 from tkinter.ttk import *
 
 from lib.view import utils
-from lib.controller.parser import parse
+from lib.model.config_object import ConfigObject
+from lib.controller.validate import validation
+from lib.controller.start_discord import start_discord
 
 PROGRAM_NAME: str = "discoxy"
 
@@ -27,6 +29,8 @@ class MainPage:
         self.frame = Frame(r)
         self.root = r
 
+        self.config = ConfigObject()
+
         PROXY_DESCRIPTION = "HTTPプロキシ:"
         PORT_DESCRIPTION = "ポート番号:"
         PLACE_DESCRIPTION = "Discordの場所:"
@@ -38,11 +42,11 @@ class MainPage:
 
         # 入力BOX
         proxy_entry = Entry(self.frame)
-        proxy_entry.insert(END, "")
+        proxy_entry.insert(END, self.config.proxy_address)
         port_entry = Entry(self.frame)
-        port_entry.insert(END, "")
+        port_entry.insert(END, self.config.port_str)
         place_entry = Entry(self.frame, width=40)
-        place_entry.insert(END, "")
+        place_entry.insert(END, self.config.discord_place)
 
         # 起動ボタン
         self.entries: List[Entry] = [proxy_entry, port_entry, place_entry]
@@ -62,4 +66,14 @@ class MainPage:
 
     def start_button_command(self):
         law_inputs: List[str] = [entry.get() for entry in self.entries]
-        print(parse(law_inputs))
+
+        if validation(law_inputs):
+            proxy = law_inputs[0]
+            port = int(law_inputs[1])
+            place = law_inputs[2]
+            self.config.set(proxy, port, place)
+
+            start_discord(self.config)
+            return
+
+        return
