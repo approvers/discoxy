@@ -3,7 +3,6 @@ import platform
 import subprocess
 
 from lib.model import utils
-from lib.model.exceptions import DiscordNotFoundError, InvalidPlatformError
 
 
 def infer_linux_path():
@@ -18,6 +17,7 @@ def infer_linux_path():
     if which_result.returncode != 0:
         return
     OS_ENVIRONMENT_PATH["discord"]["Linux"]["Path"] = which_result.stdout.strip()
+
 
 OS_ENVIRONMENT_PATH = {
     "setting": {
@@ -58,4 +58,4 @@ def find_discord_entry_command():
     return expected_path
 
 
-print(find_discord_entry_command())
+print(f"Debug: discord_entry:61: {find_discord_entry_command()}")

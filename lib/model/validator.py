@@ -1,6 +1,6 @@
 import os
 
-from compose.config import is_url
+from lib.controller.utils import is_url
 
 from lib.model.exceptions import InvalidParameterError
 
