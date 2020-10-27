@@ -1,6 +1,7 @@
 import os
 import platform
 import subprocess
+import glob
 
 from lib.model import utils
 
@@ -19,6 +20,16 @@ def infer_linux_path():
     OS_ENVIRONMENT_PATH["discord"]["Linux"]["Path"] = which_result.stdout.strip()
 
 
+def get_windows_path() -> str:
+    if platform.system() != "Windows":
+        return ""
+
+    global OS_ENVIRONMENT_PATH
+    discord_directory = utils.get_env_or("USERPROFILE", "__INVALID_PLATFORM__") + "\\AppData\\Local\\Discord\\app-*"
+    path = sorted(glob.glob(discord_directory), reverse=True)[0] + "\\Discord.exe"
+    return path
+
+
 OS_ENVIRONMENT_PATH = {
     "setting": {
         "Windows": utils.get_env_or("APPDATA", "__INVALID_PLATFORM__") + "\\approvers\\discoxy\\",
@@ -27,15 +38,15 @@ OS_ENVIRONMENT_PATH = {
     },
     "discord": {
         "Windows": {
-            "Path": utils.get_env_or("USERPROFILE", "__INVALID_PLATFORM__") + "\\AppData\\Local\\Discord\\Update.exe",
-            "Option": "-a=--proxy-server="
+            "Path": get_windows_path(),
+            "Options": "--processStart Discord.exe --a=--proxy-server={}:{}"
         },
         "Darwin": {
             "Path": "/Applications/Discord.app/Contents/MacOS/Discord",
-            "Option": "--proxy-server="
+            "Option": "--proxy-server={}:{}"
         },
         "Linux": {
-            "Option": "--proxy-server="
+            "Option": "--proxy-server={}:{}"
         }
     }
 }
