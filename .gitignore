@@ -130,3 +130,4 @@ token.secret
 
 .idea/
 .DS_Store
+*.exe
