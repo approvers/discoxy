@@ -39,7 +39,7 @@ OS_ENVIRONMENT_PATH = {
     "discord": {
         "Windows": {
             "Path": get_windows_path(),
-            "Options": "--processStart Discord.exe --a=--proxy-server={}:{}"
+            "Options": "--proxy-server={}:{}"
         },
         "Darwin": {
             "Path": "/Applications/Discord.app/Contents/MacOS/Discord",

@@ -11,14 +11,7 @@ def start_discord(config: ConfigObject):
 
     print(config.discord_place, option)
 
-    if platform.system() == "Windows":
-        option = option.split()
-        command = [config.discord_place, option[0], option[1], option[2]]
-        subprocess.run(command)
-    else:
-        command = [config.discord_place, option]
-        subprocess.run(command)
+    command = [config.discord_place, option]
+    subprocess.run(command)
 
     return
-
-
