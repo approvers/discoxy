@@ -8,12 +8,14 @@ from lib.controller.validate import validation
 from lib.controller.start_discord import start_discord
 
 PROGRAM_NAME: str = "discoxy"
+ICON_PATH: str = r"ast\\ico\\discoxy.ico"
 
 
 class Root:
     def __init__(self):
         self.window = Tk()
         self.window.title(PROGRAM_NAME)
+        self.window.iconbitmap(default=ICON_PATH)
         self.window.geometry("450x200")
         self.window.grid_rowconfigure(0, weight=1)
         self.window.grid_columnconfigure(0, weight=1)
