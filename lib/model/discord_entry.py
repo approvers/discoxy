@@ -28,14 +28,14 @@ OS_ENVIRONMENT_PATH = {
     "discord": {
         "Windows": {
             "Path": utils.get_env_or("USERPROFILE", "__INVALID_PLATFORM__") + "\\AppData\\Local\\Discord\\Update.exe",
-            "Option": "-a=--proxy-server="
+            "Option": "-a=--proxy-server={}:{}"
         },
         "Darwin": {
             "Path": "/Applications/Discord.app/Contents/MacOS/Discord",
-            "Option": "--proxy-server="
+            "Option": "--proxy-server={}:{}"
         },
         "Linux": {
-            "Option": "--proxy-server="
+            "Option": "--proxy-server={}:{}"
         }
     }
 }

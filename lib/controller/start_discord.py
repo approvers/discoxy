@@ -1,7 +1,13 @@
+import subprocess
+import platform
+
 from lib.model.config_object import ConfigObject
+from lib.model.discord_entry import OS_ENVIRONMENT_PATH
 
 
 def start_discord(config: ConfigObject):
-    # TODO: ここにDiscordを起動する処理を書いてください
     config.save_to_file()
-    exit(0)
+    option = OS_ENVIRONMENT_PATH["discord"][platform.system()]["Option"].format(config.proxy_address, config.port_str)
+    command = [f"{config.discord_place}", option]
+    subprocess.Popen(command)
+    return
