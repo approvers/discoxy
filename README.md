@@ -120,7 +120,7 @@ Discoxyが設定ファイルを見つけられなかった場合、初期設定�
 
 ## Thanks
 
-このソフトウェアは[こるく](https://twitter.com?Colk_)および[フライさん](https://twitter.com/loxygen_k)によって製作されました。
+このソフトウェアは[こるく](https://twitter.com/Colk_)および[フライさん](https://twitter.com/loxygen_k)によって製作されました。
 
 このソフトウェアは完全無料で使用することができますが、お菓子かなんかをくれると喜びます。
 
