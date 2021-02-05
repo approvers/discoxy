@@ -43,10 +43,10 @@ OS_ENVIRONMENT_PATH = {
         },
         "Darwin": {
             "Path": "/Applications/Discord.app/Contents/MacOS/Discord",
-            "Option": "--proxy-server={}:{}"
+            "Options": "--proxy-server={}:{}"
         },
         "Linux": {
-            "Option": "--proxy-server={}:{}"
+            "Options": "--proxy-server={}:{}"
         }
     }
 }
