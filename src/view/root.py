@@ -1,6 +1,6 @@
 from tkinter import *
 
-from lib.view.pages.main import MainPage
+from src.view.pages.main import MainPage
 
 PROGRAM_NAME: str = "discoxy"
 

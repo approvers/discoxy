@@ -1,8 +1,8 @@
 from tkinter.messagebox import *
 from typing import List
 
-from lib.model.exceptions import InvalidParameterError
-from lib.model.validator import validate_setting
+from src.model.exceptions import InvalidParameterError
+from src.model.validator import validate_setting
 
 
 def validation(law_inputs: List[str]) -> bool:

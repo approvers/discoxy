@@ -1,8 +1,8 @@
 import subprocess
 import platform
 
-from lib.model.config_object import ConfigObject
-from lib.model.discord_entry import OS_ENVIRONMENT_PATH
+from src.model.config_object import ConfigObject
+from src.model.discord_entry import OS_ENVIRONMENT_PATH
 
 
 def start_discord(config: ConfigObject):

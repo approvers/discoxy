@@ -5,8 +5,8 @@ from pathlib import Path
 from typing import Optional
 from tkinter.messagebox import *
 
-from lib.model.utils import get_env_or
-from lib.model.discord_entry import find_discord_entry_command
+from src.model.utils import get_env_or
+from src.model.discord_entry import find_discord_entry_command
 
 SECTION = 'discoxy'
 CONFIG_PASS_DICT = {

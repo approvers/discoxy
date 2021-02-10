@@ -3,7 +3,7 @@ import platform
 import subprocess
 import glob
 
-from lib.model import utils
+from src.model import utils
 
 
 def infer_linux_path():

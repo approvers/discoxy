@@ -1,8 +1,8 @@
 import os
 
-from lib.controller.utils import is_url
+from src.controller.utils import is_url
 
-from lib.model.exceptions import InvalidParameterError
+from src.model.exceptions import InvalidParameterError
 
 
 def validate_setting(address: str, port: str, discord_path: str):

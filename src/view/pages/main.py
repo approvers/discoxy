@@ -3,10 +3,10 @@ from tkinter import *
 from tkinter.ttk import *
 
 from version import VERSION
-from lib.view import utils
-from lib.model.config_object import ConfigObject
-from lib.controller.validate import validation
-from lib.controller.start_discord import start_discord
+from src.view import utils
+from src.model.config_object import ConfigObject
+from src.controller.validate import validation
+from src.controller.start_discord import start_discord
 
 
 class MainPage:
