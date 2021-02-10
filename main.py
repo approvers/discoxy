@@ -1,4 +1,4 @@
-from src.view import root
+from src.controller.root import RootController
 
 if __name__ == "__main__":
-    root.Root()
+    RootController().run()
