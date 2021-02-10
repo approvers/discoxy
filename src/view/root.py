@@ -12,7 +12,7 @@ class Root:
 
         self.window = Tk()
         self.window.title(PROGRAM_NAME)
-        self.window.geometry("420x220")
+        self.window.geometry("420x245")
         self.window.grid_rowconfigure(0, weight=1)
         self.window.grid_columnconfigure(0, weight=1)
 
