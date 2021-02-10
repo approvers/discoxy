@@ -2,26 +2,11 @@ from typing import List
 from tkinter import *
 from tkinter.ttk import *
 
+from version import VERSION
 from lib.view import utils
 from lib.model.config_object import ConfigObject
 from lib.controller.validate import validation
 from lib.controller.start_discord import start_discord
-
-PROGRAM_NAME: str = "discoxy"
-
-
-class Root:
-    def __init__(self):
-        self.window = Tk()
-        self.window.title(PROGRAM_NAME)
-        self.window.geometry("450x200")
-        self.window.grid_rowconfigure(0, weight=1)
-        self.window.grid_columnconfigure(0, weight=1)
-
-        main_page = MainPage(self.window)
-        main_page.frame.tkraise()
-
-        self.window.mainloop()
 
 
 class MainPage:
@@ -34,18 +19,20 @@ class MainPage:
         PROXY_DESCRIPTION = "HTTPプロキシ:"
         PORT_DESCRIPTION = "ポート番号:"
         PLACE_DESCRIPTION = "Discordの場所:"
+        VERSION_DESCRIPTION = "Ver: {}   ".format(VERSION)
 
         # ラベル
         proxy_label = Label(self.frame, text=PROXY_DESCRIPTION)
         port_label = Label(self.frame, text=PORT_DESCRIPTION)
         place_label = Label(self.frame, text=PLACE_DESCRIPTION)
+        version_label = Label(self.frame, text=VERSION_DESCRIPTION, foreground="gray")
 
         # 入力BOX
-        proxy_entry = Entry(self.frame)
+        proxy_entry = Entry(self.frame, width=60)
         proxy_entry.insert(END, self.config.proxy_address)
-        port_entry = Entry(self.frame)
+        port_entry = Entry(self.frame, width=8)
         port_entry.insert(END, self.config.port_str)
-        place_entry = Entry(self.frame, width=40)
+        place_entry = Entry(self.frame, width=60)
         place_entry.insert(END, self.config.discord_place)
 
         # 起動ボタン
@@ -61,6 +48,8 @@ class MainPage:
         place_entry.pack()
         utils.space(self.frame, 1)
         start_button.pack()
+        utils.space(self.frame, 1)
+        version_label.pack(anchor="se")
 
         self.frame.grid(row=0, column=0, sticky="nsew")
 

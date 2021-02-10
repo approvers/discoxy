@@ -1,5 +1,5 @@
-from lib.view import view
+from lib.view import root
 
 
 if __name__ == "__main__":
-    view.Root()
+    root.Root()
